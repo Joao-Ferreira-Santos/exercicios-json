@@ -1,23 +1,23 @@
 import express from 'express'
+import { somar, subtrair } from './exercicios/exercicio-1.js'
 
 const app = express()
+app.use(express.json())
 const port = 3000
 
-app.get('/api/exercicio1', (req, res) => {
-    const num1 = parseFloat(req.query.num1)
-    const num2 = parseFloat(req.query.num2)
+app.post('/api/somar', (req, res) => {
+    const result = somar(req.body.num1, req.body.num2)
 
-    res.json({
-        message: `${num1} + ${num2} é igual a: ${num1 + num2}`
+    res.status(200).json({
+        message: `resultado: ${result}`
     })
 })
 
-app.get('/api/exercicio2', (req, res) => {
-    const num1 = parseFloat(req.query.num1)
-    const num2 = parseFloat(req.query.num2)
+app.post('/api/subtrair', (req, res) => {
+    const result = subtrair(req.body.num1, req.body.num2)
 
-    res.json({
-        message: `${num1} - ${num2} é igual a: ${num1 - num2}`
+    res.status(200).json({
+        message: `resultado: ${result}`
     })
 })
 
